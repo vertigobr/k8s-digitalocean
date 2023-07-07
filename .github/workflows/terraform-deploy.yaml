@@ -17,7 +17,7 @@ jobs:
       - name: Terraform Plan
         id: plan
         run: |
-          terraform init 
+          terraform init -backend-config="access_key=${{ secrets.SPACES_ACCESS_TOKEN }}" -backend-config="secret_key=${{ secrets.SPACES_SECRET_KEY}}" 
           terraform plan -var "do_token=${{ secrets.DO_PAT }}" -no-color -out plan_cache.json
           
       - name: Terraform apply
