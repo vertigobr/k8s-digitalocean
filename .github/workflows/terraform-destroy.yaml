@@ -26,7 +26,7 @@ jobs:
             ${{ runner.os }}-terraform-
 
       - name: Initialize Terraform
-        run: terraform init
+        run: terraform init -backend-config="access_key=${{ secrets.SPACES_ACCESS_TOKEN }}" -backend-config="secret_key=${{ secrets.SPACES_SECRET_KEY}}"
 
       - name: Terraform destroy
         run: terraform destroy -var "do_token=${{ secrets.DO_PAT }}" --auto-approve
